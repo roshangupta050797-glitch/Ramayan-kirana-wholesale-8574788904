@@ -76,6 +76,21 @@ input {
 </head>
 
 <body>
+     <div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#000;color:#fff;padding:10px;text-align:center;">
+  This site uses cookies to show ads. 
+  <button onclick="acceptCookies()" style="padding:5px 10px;">Accept</button>
+</div>
+
+<script>
+function acceptCookies() {
+  document.getElementById("cookie-banner").style.display = "none";
+  localStorage.setItem("cookiesAccepted", "true");
+}
+
+if(localStorage.getItem("cookiesAccepted")) {
+  document.getElementById("cookie-banner").style.display = "none";
+}
+</script>
 
 <div class="header">
   <h2>🛍️ रामायण किराना – होलसेल एवं रिटेल स्टोर, भटनी</h2>
