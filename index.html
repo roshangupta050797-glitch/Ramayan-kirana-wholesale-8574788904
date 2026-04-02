@@ -1,4 +1,3 @@
-04.01 2:42 PM
 <a href="index.html">Home</a> |
 <a href="about.html">About</a> |
 <a href="contact.html">Contact</a> |
@@ -48,12 +47,17 @@ input {
   padding: 10px;
 }
 
-.category {
+.category-button {
   background: #2e7d32;
   color: white;
-  padding: 8px;
+  padding: 10px;
   margin-top: 10px;
   border-radius: 5px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: left;
 }
 
 .product {
@@ -70,7 +74,6 @@ input {
   padding: 15px;
   margin-top: 20px;
 }
-
 </style>
 
 </head>
@@ -99,7 +102,7 @@ if(localStorage.getItem("cookiesAccepted")) {
 </div>
 <div style="text-align:center; margin:10px;">
   <a href="bhatni.html">📍 भटनी के बारे में जानें</a>
-     </div>
+</div>
 
 <div class="offer">
    ₹500 की ऊपर की खरीदारी पर ही ये रेट लागू होंगे
@@ -111,21 +114,26 @@ if(localStorage.getItem("cookiesAccepted")) {
 
 <div class="container">
 
-<div class="category">🫘 दालें व अनाज</div>
+<button class="category-button" onclick="toggleCategory(this)">🫘 दालें व अनाज</button>
+<div class="category-products">
 <div class="product">रहर दाल (मयूर कला) - ₹110/kg</div>
 <div class="product">चना दाल - ₹70/kg</div>
 <div class="product">चना - ₹63/kg</div>
 <div class="product">मटर - ₹50/kg</div>
 <div class="product">मूंगफली दाना - ₹120/kg</div>
 <div class="product">कबूली चना - ₹75/kg</div>
+</div>
 
-<div class="category"> आटा, मैदा, सूजी व पशु चारा</div>
+<button class="category-button" onclick="toggleCategory(this)">आटा, मैदा, सूजी व पशु चारा</button>
+<div class="category-products">
 <div class="product">आटा - ₹28/kg</div>
 <div class="product">मैदा - ₹29/kg</div>
 <div class="product">सूजी - ₹30/kg</div>
 <div class="product">चोकर (29kg नेट) - ₹820/बोरी</div>
+</div>
 
-<div class="category">🥔 सब्ज़ियां व मसाले</div>
+<button class="category-button" onclick="toggleCategory(this)">🥔 सब्ज़ियां व मसाले</button>
+<div class="category-products">
 <div class="product">आलू लाल - ₹13/kg</div>
 <div class="product">आलू सफेद - ₹11/kg</div>
 <div class="product">प्याज - ₹20/kg</div>
@@ -134,49 +142,62 @@ if(localStorage.getItem("cookiesAccepted")) {
 <div class="product">काली मिर्च - ₹76/100g</div>
 <div class="product">प्याज बंगाली- ₹15/kg</div>
 <div class="product">टाटा नमक mrp ₹30 - ₹24/kg</div>
+</div>
 
-<div class="category">🛢️ तेल व घी</div>
+<button class="category-button" onclick="toggleCategory(this)">🛢️ तेल व घी</button>
+<div class="category-products">
 <div class="product">बैल कोल्हू सरसों तेल - ₹173/L</div>
 <div class="product">किंग सरसों तेल - ₹158/L</div>
 <div class="product">फॉर्च्यून रिफाइंड तेल - ₹145/L</div>
 <div class="product">पाम ऑयल - ₹106/L</div>
+</div>
 
-<div class="category"> मिठाई व नाश्ता</div>
+<button class="category-button" onclick="toggleCategory(this)">मिठाई व नाश्ता</button>
+<div class="category-products">
 <div class="product">मीठा - ₹49/kg</div>
 <div class="product">चिवड़ा - ₹36/kg</div>
 <div class="product">चीनी - ₹45/kg</div>
+</div>
 
-<div class="category"> चाय व बिस्किट</div>
+<button class="category-button" onclick="toggleCategory(this)">चाय व बिस्किट</button>
+<div class="category-products">
 <div class="product">ताज़ा चाय ₹25 वाला - ₹22</div>
 <div class="product">ताज़ा चाय (250g) - ₹44</div>
 <div class="product">बटर बिस्किट ₹20 वाला - ₹16</div>
 <div class="product">गूगली बिस्किट ₹35 वाला - ₹30.50</div>
 <div class="product">रस्क ₹20 वाला - ₹17</div>
+</div>
 
-<div class="category"> मैगी व पास्ता</div>
+<button class="category-button" onclick="toggleCategory(this)">मैगी व पास्ता</button>
+<div class="category-products">
 <div class="product">मैगी ₹15 वाला - ₹13</div>
 <div class="product">मैगी ₹7 वाला - ₹6.50</div>
 <div class="product">पास्ता - ₹44/kg</div>
+</div>
 
-<div class="category">🧼 हाइजीन व घरेलू उत्पाद</div>
+<button class="category-button" onclick="toggleCategory(this)">🧼 हाइजीन व घरेलू उत्पाद</button>
+<div class="category-products">
 <div class="product">व्हील डिटर्जेंट (1kg) - ₹68</div>
 <div class="product">क्लिनिक प्लस शैम्पू (16 pcs) - ₹11.50</div>
 <div class="product">साबुन ₹10 वाला - ₹8.50</div>
 <div class="product">ऐम/होमलाइट माचिस (बंडल) - ₹7</div>
 <div class="product">गोल्डी ₹1 वाला (10 में 12) - ₹10</div>
+</div>
 
-<div class="category">️ पैक मसाले</div>
+<button class="category-button" onclick="toggleCategory(this)">पैक मसाले</button>
+<div class="category-products">
 <div class="product">एवररेस्ट मसाला ₹5 वाला - ₹3.75</div>
 <div class="product">राजेश मीट मसाला ₹5 वाला - ₹3.75</div>
+</div>
 
 </div>
 
 <div class="footer">
   <h3> ऑर्डर देने के लिए संपर्क करें</h3>
   <p>रामायण किराना होलसेल, भटनी</p>
-  <p> 8574788904</p>
-  <p> भटनी क्षेत्र में होम डिलीवरी उपलब्ध है</p>
-  <p> सही रेट, सही क्वालिटी – एक ही जगह</p>
+  <p>8574788904</p>
+  <p>भटनी क्षेत्र में होम डिलीवरी उपलब्ध है</p>
+  <p>सही रेट, सही क्वालिटी – एक ही जगह</p>
 </div>
 
 <script>
@@ -189,6 +210,21 @@ function searchProduct() {
     items[i].style.display = text.includes(input) ? "" : "none";
   }
 }
+
+// Toggle category products
+function toggleCategory(button) {
+  let nextDiv = button.nextElementSibling;
+  if(nextDiv.style.display === "none" || nextDiv.style.display === "") {
+    nextDiv.style.display = "block";
+  } else {
+    nextDiv.style.display = "none";
+  }
+}
+
+// By default, show all categories expanded
+let allCategories = document.getElementsByClassName("category-products");
+for(let i=0;i<allCategories.length;i++){ allCategories[i].style.display="block"; }
+
 </script>
 
 </body>
