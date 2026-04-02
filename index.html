@@ -1,3 +1,4 @@
+
 <a href="index.html">Home</a> |
 <a href="about.html">About</a> |
 <a href="contact.html">Contact</a> |
@@ -12,74 +13,125 @@
      crossorigin="anonymous"></script>
 <style>
 body {
-  font-family: Arial;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  background: #f4f4f4;
+  background: #f5f5f5;
 }
 
 .header {
   background: #1b5e20;
   color: white;
   text-align: center;
-  padding: 15px;
+  padding: 20px 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.header img {
+  width: 200px;
+  border-radius: 10px;
 }
 
 .offer {
   background: #ffeb3b;
   text-align: center;
-  padding: 10px;
+  padding: 12px;
   font-weight: bold;
+  font-size: 16px;
+  box-shadow: inset 0 -2px #ccc;
 }
 
 .search-box {
-  padding: 10px;
+  padding: 15px;
   text-align: center;
   background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 input {
   width: 90%;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 5px #2e7d32;
 }
 
 .container {
-  padding: 10px;
+  padding: 15px;
+  max-width: 800px;
+  margin: auto;
 }
 
 .category-button {
   background: #2e7d32;
   color: white;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 5px;
+  padding: 12px 15px;
+  margin-top: 12px;
+  border-radius: 8px;
   border: none;
   width: 100%;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 17px;
   text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.category-button:hover {
+  background: #1b5e20;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.category-button::after {
+  content: '▼';
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.category-button.active::after {
+  transform: rotate(-180deg);
+}
+
+.category-products {
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  max-height: 1000px; /* initially all open */
 }
 
 .product {
   background: white;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 5px;
+  margin: 6px 0;
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  font-size: 15px;
 }
 
 .footer {
   background: #1b5e20;
   color: white;
   text-align: center;
-  padding: 15px;
-  margin-top: 20px;
+  padding: 20px;
+  margin-top: 25px;
+  box-shadow: 0 -3px 6px rgba(0,0,0,0.1);
+}
+
+button:focus {
+  outline: none;
 }
 </style>
-
 </head>
 
 <body>
-     <div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#000;color:#fff;padding:10px;text-align:center;">
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#000;color:#fff;padding:10px;text-align:center; z-index:100;">
   This site uses cookies to show ads. 
   <button onclick="acceptCookies()" style="padding:5px 10px;">Accept</button>
 </div>
@@ -89,17 +141,17 @@ function acceptCookies() {
   document.getElementById("cookie-banner").style.display = "none";
   localStorage.setItem("cookiesAccepted", "true");
 }
-
 if(localStorage.getItem("cookiesAccepted")) {
   document.getElementById("cookie-banner").style.display = "none";
 }
 </script>
 
 <div class="header">
-  <img src="logo.png" alt="Logo" style="width:200px;">
+  <img src="logo.png" alt="Logo">
   <h2>🛍️ रामायण किराना – होलसेल एवं रिटेल स्टोर</h2>
   <p>सबसे सस्ता - सबसे अच्छा</p>
 </div>
+
 <div style="text-align:center; margin:10px;">
   <a href="bhatni.html">📍 भटनी के बारे में जानें</a>
 </div>
@@ -114,6 +166,7 @@ if(localStorage.getItem("cookiesAccepted")) {
 
 <div class="container">
 
+<!-- Category: दालें व अनाज -->
 <button class="category-button" onclick="toggleCategory(this)">🫘 दालें व अनाज</button>
 <div class="category-products">
 <div class="product">रहर दाल (मयूर कला) - ₹110/kg</div>
@@ -124,6 +177,7 @@ if(localStorage.getItem("cookiesAccepted")) {
 <div class="product">कबूली चना - ₹75/kg</div>
 </div>
 
+<!-- Category: आटा, मैदा, सूजी व पशु चारा -->
 <button class="category-button" onclick="toggleCategory(this)">आटा, मैदा, सूजी व पशु चारा</button>
 <div class="category-products">
 <div class="product">आटा - ₹28/kg</div>
@@ -132,6 +186,7 @@ if(localStorage.getItem("cookiesAccepted")) {
 <div class="product">चोकर (29kg नेट) - ₹820/बोरी</div>
 </div>
 
+<!-- Category: सब्ज़ियां व मसाले -->
 <button class="category-button" onclick="toggleCategory(this)">🥔 सब्ज़ियां व मसाले</button>
 <div class="category-products">
 <div class="product">आलू लाल - ₹13/kg</div>
@@ -144,6 +199,7 @@ if(localStorage.getItem("cookiesAccepted")) {
 <div class="product">टाटा नमक mrp ₹30 - ₹24/kg</div>
 </div>
 
+<!-- Category: तेल व घी -->
 <button class="category-button" onclick="toggleCategory(this)">🛢️ तेल व घी</button>
 <div class="category-products">
 <div class="product">बैल कोल्हू सरसों तेल - ₹173/L</div>
@@ -152,6 +208,7 @@ if(localStorage.getItem("cookiesAccepted")) {
 <div class="product">पाम ऑयल - ₹106/L</div>
 </div>
 
+<!-- Category: मिठाई व नाश्ता -->
 <button class="category-button" onclick="toggleCategory(this)">मिठाई व नाश्ता</button>
 <div class="category-products">
 <div class="product">मीठा - ₹49/kg</div>
@@ -159,6 +216,7 @@ if(localStorage.getItem("cookiesAccepted")) {
 <div class="product">चीनी - ₹45/kg</div>
 </div>
 
+<!-- Category: चाय व बिस्किट -->
 <button class="category-button" onclick="toggleCategory(this)">चाय व बिस्किट</button>
 <div class="category-products">
 <div class="product">ताज़ा चाय ₹25 वाला - ₹22</div>
@@ -168,6 +226,7 @@ if(localStorage.getItem("cookiesAccepted")) {
 <div class="product">रस्क ₹20 वाला - ₹17</div>
 </div>
 
+<!-- Category: मैगी व पास्ता -->
 <button class="category-button" onclick="toggleCategory(this)">मैगी व पास्ता</button>
 <div class="category-products">
 <div class="product">मैगी ₹15 वाला - ₹13</div>
@@ -175,6 +234,7 @@ if(localStorage.getItem("cookiesAccepted")) {
 <div class="product">पास्ता - ₹44/kg</div>
 </div>
 
+<!-- Category: हाइजीन व घरेलू उत्पाद -->
 <button class="category-button" onclick="toggleCategory(this)">🧼 हाइजीन व घरेलू उत्पाद</button>
 <div class="category-products">
 <div class="product">व्हील डिटर्जेंट (1kg) - ₹68</div>
@@ -184,6 +244,7 @@ if(localStorage.getItem("cookiesAccepted")) {
 <div class="product">गोल्डी ₹1 वाला (10 में 12) - ₹10</div>
 </div>
 
+<!-- Category: पैक मसाले -->
 <button class="category-button" onclick="toggleCategory(this)">पैक मसाले</button>
 <div class="category-products">
 <div class="product">एवररेस्ट मसाला ₹5 वाला - ₹3.75</div>
@@ -211,20 +272,21 @@ function searchProduct() {
   }
 }
 
-// Toggle category products
 function toggleCategory(button) {
+  button.classList.toggle("active");
   let nextDiv = button.nextElementSibling;
-  if(nextDiv.style.display === "none" || nextDiv.style.display === "") {
-    nextDiv.style.display = "block";
+  if(nextDiv.style.maxHeight && nextDiv.style.maxHeight !== "0px") {
+    nextDiv.style.maxHeight = "0px";
   } else {
-    nextDiv.style.display = "none";
+    nextDiv.style.maxHeight = nextDiv.scrollHeight + "px";
   }
 }
 
-// By default, show all categories expanded
+// By default, all categories open
 let allCategories = document.getElementsByClassName("category-products");
-for(let i=0;i<allCategories.length;i++){ allCategories[i].style.display="block"; }
-
+for(let i=0;i<allCategories.length;i++){
+  allCategories[i].style.maxHeight = allCategories[i].scrollHeight + "px";
+}
 </script>
 
 </body>
