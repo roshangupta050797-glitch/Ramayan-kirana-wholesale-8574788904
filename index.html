@@ -221,6 +221,138 @@
         font-size: 16px;
       }
     }
+    <style>
+.hero-slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 260px;
+  overflow: hidden;
+  margin: 15px auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  background: #fff;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide.active {
+  display: block;
+  animation: fadeEffect 0.8s ease-in-out;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-text {
+  position: absolute;
+  left: 20px;
+  bottom: 25px;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  max-width: 70%;
+}
+
+.slide-text h2 {
+  margin: 0 0 6px;
+  font-size: 24px;
+}
+
+.slide-text p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.45);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 22px;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.prev:hover, .next:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+.dots {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 4px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #fff;
+}
+
+@keyframes fadeEffect {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .hero-slider {
+    height: 180px;
+    border-radius: 10px;
+  }
+
+  .slide-text {
+    left: 10px;
+    bottom: 15px;
+    padding: 8px 10px;
+    max-width: 80%;
+  }
+
+  .slide-text h2 {
+    font-size: 16px;
+  }
+
+  .slide-text p {
+    font-size: 12px;
+  }
+
+  .prev, .next {
+    font-size: 16px;
+    padding: 7px 10px;
+  }
+}
+</style>
   </style>
 </head>
 <body>
@@ -244,6 +376,91 @@
     <h2>🛍️ रामायण किराना – होलसेल </h2>
     <p>सबसे सस्ता - सबसे अच्छा</p>
   </div>
+  <!-- Sliding Banner Start -->
+<section class="hero-slider">
+  <div class="slides">
+    
+    <div class="slide active">
+      <img src="images/banner1.jpg" alt="Banner 1">
+      <div class="slide-text">
+        <h2>Best Grocery Deals</h2>
+        <p>Daily use products wholesale rate par</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/banner2.jpg" alt="Banner 2">
+      <div class="slide-text">
+        <h2>Special Rice Offer</h2>
+        <p>Premium quality chawal ab aur sasta</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/banner3.jpg" alt="Banner 3">
+      <div class="slide-text">
+        <h2>Atta & Besan Stock Available</h2>
+        <p>Retail aur wholesale dono ke liye</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/banner4.jpg" alt="Banner 4">
+      <div class="slide-text">
+        <h2>Oil & Ghee Offers</h2>
+        <p>Top brands best rate par</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/banner5.jpg" alt="Banner 5">
+      <div class="slide-text">
+        <h2>Festival Special Discount</h2>
+        <p>Bumper offer sirf limited time ke liye</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/banner6.jpg" alt="Banner 6">
+      <div class="slide-text">
+        <h2>Snacks & Biscuits Collection</h2>
+        <p>Har brand ek hi jagah</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/banner7.jpg" alt="Banner 7">
+      <div class="slide-text">
+        <h2>Detergent & Soap Offer</h2>
+        <p>Family pack aur bulk order available</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/banner8.jpg" alt="Banner 8">
+      <div class="slide-text">
+        <h2>Other Company Promotion</h2>
+        <p>Yahan kisi bhi company ka ad laga sakte ho</p>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="prev" onclick="moveSlide(-1)">❮</button>
+  <button class="next" onclick="moveSlide(1)">❯</button>
+
+  <div class="dots">
+    <span class="dot active" onclick="currentSlide(0)"></span>
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+    <span class="dot" onclick="currentSlide(6)"></span>
+    <span class="dot" onclick="currentSlide(7)"></span>
+  </div>
+</section>
+<!-- Sliding Banner End -->
 
   <div style="text-align:center; margin:10px;">
     <a href="bhatni.html">📍 भटनी के बारे में जानें</a>
@@ -434,6 +651,41 @@
       });
     }
   </script>
+<script>
+let slideIndex = 0;
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
 
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove("active");
+    dots[i].classList.remove("active");
+  });
+
+  slides[index].classList.add("active");
+  dots[index].classList.add("active");
+}
+
+function moveSlide(step) {
+  slideIndex += step;
+  if (slideIndex >= slides.length) slideIndex = 0;
+  if (slideIndex < 0) slideIndex = slides.length - 1;
+  showSlide(slideIndex);
+}
+
+function currentSlide(index) {
+  slideIndex = index;
+  showSlide(slideIndex);
+}
+
+function autoSlide() {
+  slideIndex++;
+  if (slideIndex >= slides.length) slideIndex = 0;
+  showSlide(slideIndex);
+}
+
+showSlide(slideIndex);
+setInterval(autoSlide, 3000);
+</script>
 </body>
 </html>
