@@ -254,8 +254,10 @@
 
 .slide img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
 }
 
 .slide-text {
@@ -519,6 +521,31 @@
     height: 150px;
   }
 }
+    .offer-slider {
+  width: 100%;
+  overflow: hidden;
+  background: #f5f5f5;
+  border-radius: 16px;
+}
+
+.offer-slider .slide img {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block;
+}
+
+.offer-slider,
+.offer-slider .slides,
+.offer-slider .slide {
+  height: auto !important;
+  min-height: auto !important;
+}
+
+.offer-slider img {
+  max-width: 100%;
+  height: auto !important;
+}
 </style>
   </style>
 </head>
@@ -545,7 +572,7 @@
   <p>सबसे सस्ता - सबसे अच्छा</p>
 </div>
   <!-- Sliding Banner Start -->
-<section class="hero-slider">
+<section class="hero-slider offer-slider">
   <div class="slides">
     
     <div class="slide active">
