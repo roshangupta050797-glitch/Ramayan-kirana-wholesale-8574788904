@@ -727,6 +727,15 @@
     max-width: 260px;
   }
   }
+    .alert-text {
+  animation: textblink 1s infinite;
+}
+
+@keyframes textblink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
 </style>
   </style>
 </head>
@@ -763,6 +772,11 @@
   <h2>🛍️ रामायण किराना – होलसेल </h2>
   <p>सबसे सस्ता - सबसे अच्छा</p>
 </div>
+  <div class="alert-bar">
+  <a href="alert.html" class="alert-text">
+    ⚠️ ध्यान दें: कल से दाल के रेट बढ़ सकते हैं – पूरी जानकारी देखें
+  </a>
+  </div>
   <section class="intro-section">
   <div class="intro-box">
     <p class="intro-tag">Trusted Grocery Wholesale Store in Bhatni</p>
