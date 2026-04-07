@@ -745,6 +745,49 @@
   75% { transform: translateX(-2px); }
   100% { transform: translateX(0); }
 }
+    .scroll-category {
+  padding: 12px;
+  background: #fff;
+}
+
+.scroll-category h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.scroll-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  scroll-behavior: smooth;
+}
+
+/* Scroll bar hide (mobile jaisa look) */
+.scroll-row::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-item {
+  flex: 0 0 auto;
+  width: 80px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.scroll-item img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f3f3f3;
+  padding: 8px;
+}
+
+.scroll-item span {
+  display: block;
+  font-size: 12px;
+  margin-top: 5px;
+  color: #222;
+  }
 </style>
   </style>
 </head>
@@ -898,6 +941,55 @@
   </div>
 </section>
 <!-- Sliding Banner End -->
+  <section class="scroll-category">
+  <h2>Shop by Category</h2>
+
+  <div class="scroll-row">
+
+    <a href="namkeen.html" class="scroll-item">
+      <img src="images/namkeen.png">
+      <span>Namkeen</span>
+    </a>
+
+    <a href="biscuit.html" class="scroll-item">
+      <img src="images/biscuit.png">
+      <span>Biscuit</span>
+    </a>
+
+    <a href="skincare.html" class="scroll-item">
+      <img src="images/skincare.png">
+      <span>Skin Care</span>
+    </a>
+
+    <a href="health.html" class="scroll-item">
+      <img src="images/health.png">
+      <span>Health</span>
+    </a>
+
+    <a href="dryfruits.html" class="scroll-item">
+      <img src="images/dryfruits.png">
+      <span>Dry Fruits</span>
+    </a>
+
+    <a href="toffee.html" class="scroll-item">
+      <img src="images/toffee.png">
+      <span>Toffee</span>
+    </a>
+
+    <a href="breakfast.html" class="scroll-item">
+      <img src="images/breakfast.png">
+      <span>Breakfast</span>
+    </a>
+
+    <a href="masala.html" class="scroll-item">
+      <img src="images/masala.png">
+      <span>Masale</span>
+    </a>
+
+    <!-- aur jitne chahe add karo -->
+    
+  </div>
+  </section>
 
   <div style="text-align:center; margin:10px;">
     <a href="bhatni.html">📍 भटनी के बारे में जानें</a>
