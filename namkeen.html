@@ -67,7 +67,6 @@
       overflow: hidden;
       background: linear-gradient(135deg, #ffe600, #ffb300);
       box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-      position: relative;
     }
 
     .hero-content {
@@ -136,7 +135,6 @@
       font-size: 14px;
       font-weight: bold;
       white-space: nowrap;
-      cursor: pointer;
     }
 
     .section-head {
@@ -347,14 +345,8 @@
     }
 
     @keyframes popin {
-      from {
-        transform: scale(0.96);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     .popup-content img {
@@ -421,7 +413,7 @@
     <div class="brand-row">
       <a href="index.html" class="nav-btn">← Back</a>
       <div class="brand">RN Kirana Wholesale</div>
-      <a href="cart.html" class="nav-btn">Cart 🛒</a>
+      <a href="cart.html" class="nav-btn" id="cartLink">Cart 🛒 0</a>
     </div>
 
     <div class="search-box">
@@ -457,13 +449,13 @@
     <span>Top Products</span>
   </div>
 
-  <div class="product-grid" id="productGrid">
+  <div class="product-grid">
 
     <div class="product-card product-item" data-name="Amar Boondi Namkeen">
       <div class="product-image-wrap">
         <span class="deal-tag">#BestDeal</span>
         <img src="offer1.jpg" alt="Amar Boondi Namkeen">
-        <button class="plus-btn" onclick="openPopup('Amar Boondi Namkeen','1kg pack, crunchy aur tasty namkeen. Retail aur wholesale dono ke liye kaafi popular item.','₹132','offer1.jpg',132)">+</button>
+        <button class="plus-btn" onclick="openPopup('Amar Boondi Namkeen','1kg pack, crunchy aur tasty namkeen. Retail aur wholesale dono ke liye kaafi popular item.','₹132','offer1.jpg',132,'Amar Boondi Namkeen','Amar Boondi Namkeen 1kg pack, crunchy aur tasty namkeen','7K+ bought in past month')">+</button>
       </div>
       <div class="product-info">
         <div class="product-title">Amar Boondi Namkeen</div>
@@ -476,7 +468,7 @@
           <div class="discount">17% off</div>
         </div>
         <div class="qty-container" id="qty-Amar Boondi Namkeen">
-          <button class="cart-btn" onclick="firstAdd('Amar Boondi Namkeen',132)">Add to Cart</button>
+          <button class="cart-btn" onclick="firstAdd('Amar Boondi Namkeen',132,'offer1.jpg','Amar Boondi Namkeen 1kg pack, crunchy aur tasty namkeen','7K+ bought in past month')">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -485,7 +477,7 @@
       <div class="product-image-wrap">
         <span class="deal-tag">#Hot</span>
         <img src="offer2.jpg" alt="Sev Bhujia">
-        <button class="plus-btn" onclick="openPopup('Sev Bhujia','Mazedar sev bhujia jo daily sale ke liye acchi choice hai. Popular moving snack.','₹110','offer2.jpg',110)">+</button>
+        <button class="plus-btn" onclick="openPopup('Sev Bhujia','Mazedar sev bhujia jo daily sale ke liye acchi choice hai. Popular moving snack.','₹110','offer2.jpg',110,'Sev Bhujia','Sev Bhujia popular namkeen pack for daily sale','5K+ bought in past month')">+</button>
       </div>
       <div class="product-info">
         <div class="product-title">Sev Bhujia</div>
@@ -498,7 +490,7 @@
           <div class="discount">21% off</div>
         </div>
         <div class="qty-container" id="qty-Sev Bhujia">
-          <button class="cart-btn" onclick="firstAdd('Sev Bhujia',110)">Add to Cart</button>
+          <button class="cart-btn" onclick="firstAdd('Sev Bhujia',110,'offer2.jpg','Sev Bhujia popular namkeen pack for daily sale','5K+ bought in past month')">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -507,7 +499,7 @@
       <div class="product-image-wrap">
         <span class="deal-tag">#CrazyDeal</span>
         <img src="offer3.jpg" alt="Mix Namkeen">
-        <button class="plus-btn" onclick="openPopup('Mix Namkeen','Mixed taste wala namkeen. Family use aur counter sale ke liye suitable choice.','₹95','offer3.jpg',95)">+</button>
+        <button class="plus-btn" onclick="openPopup('Mix Namkeen','Mixed taste wala namkeen. Family use aur counter sale ke liye suitable choice.','₹95','offer3.jpg',95,'Mix Namkeen','Mix Namkeen family choice pack with chatpata taste','4K+ bought in past month')">+</button>
       </div>
       <div class="product-info">
         <div class="product-title">Mix Namkeen</div>
@@ -520,7 +512,7 @@
           <div class="discount">20% off</div>
         </div>
         <div class="qty-container" id="qty-Mix Namkeen">
-          <button class="cart-btn" onclick="firstAdd('Mix Namkeen',95)">Add to Cart</button>
+          <button class="cart-btn" onclick="firstAdd('Mix Namkeen',95,'offer3.jpg','Mix Namkeen family choice pack with chatpata taste','4K+ bought in past month')">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -529,7 +521,7 @@
       <div class="product-image-wrap">
         <span class="deal-tag">#Sale</span>
         <img src="offer1.jpg" alt="Aloo Bhujia">
-        <button class="plus-btn" onclick="openPopup('Aloo Bhujia','Crispy aloo bhujia jo har age group ko pasand aati hai. Counter display ke liye bhi accha item.','₹105','offer1.jpg',105)">+</button>
+        <button class="plus-btn" onclick="openPopup('Aloo Bhujia','Crispy aloo bhujia jo har age group ko pasand aati hai. Counter display ke liye bhi accha item.','₹105','offer1.jpg',105,'Aloo Bhujia','Aloo Bhujia crunchy and spicy namkeen pack','6K+ bought in past month')">+</button>
       </div>
       <div class="product-info">
         <div class="product-title">Aloo Bhujia</div>
@@ -542,7 +534,7 @@
           <div class="discount">22% off</div>
         </div>
         <div class="qty-container" id="qty-Aloo Bhujia">
-          <button class="cart-btn" onclick="firstAdd('Aloo Bhujia',105)">Add to Cart</button>
+          <button class="cart-btn" onclick="firstAdd('Aloo Bhujia',105,'offer1.jpg','Aloo Bhujia crunchy and spicy namkeen pack','6K+ bought in past month')">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -551,7 +543,7 @@
       <div class="product-image-wrap">
         <span class="deal-tag">#TopPick</span>
         <img src="offer2.jpg" alt="Moong Dal Namkeen">
-        <button class="plus-btn" onclick="openPopup('Moong Dal Namkeen','Halka aur tasty moong dal namkeen. Premium look aur clean taste ke saath.','₹125','offer2.jpg',125)">+</button>
+        <button class="plus-btn" onclick="openPopup('Moong Dal Namkeen','Halka aur tasty moong dal namkeen. Premium look aur clean taste ke saath.','₹125','offer2.jpg',125,'Moong Dal Namkeen','Moong Dal Namkeen premium snack pack','3K+ bought in past month')">+</button>
       </div>
       <div class="product-info">
         <div class="product-title">Moong Dal Namkeen</div>
@@ -564,7 +556,7 @@
           <div class="discount">16% off</div>
         </div>
         <div class="qty-container" id="qty-Moong Dal Namkeen">
-          <button class="cart-btn" onclick="firstAdd('Moong Dal Namkeen',125)">Add to Cart</button>
+          <button class="cart-btn" onclick="firstAdd('Moong Dal Namkeen',125,'offer2.jpg','Moong Dal Namkeen premium snack pack','3K+ bought in past month')">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -573,7 +565,7 @@
       <div class="product-image-wrap">
         <span class="deal-tag">#Popular</span>
         <img src="offer3.jpg" alt="Khatta Meetha Mix">
-        <button class="plus-btn" onclick="openPopup('Khatta Meetha Mix','Sweet aur tangy taste ka popular mix. Tea time aur family pack demand ke liye accha.','₹118','offer3.jpg',118)">+</button>
+        <button class="plus-btn" onclick="openPopup('Khatta Meetha Mix','Sweet aur tangy taste ka popular mix. Tea time aur family pack demand ke liye accha.','₹118','offer3.jpg',118,'Khatta Meetha Mix','Khatta Meetha Mix tea time favorite pack','4K+ bought in past month')">+</button>
       </div>
       <div class="product-info">
         <div class="product-title">Khatta Meetha Mix</div>
@@ -586,7 +578,7 @@
           <div class="discount">18% off</div>
         </div>
         <div class="qty-container" id="qty-Khatta Meetha Mix">
-          <button class="cart-btn" onclick="firstAdd('Khatta Meetha Mix',118)">Add to Cart</button>
+          <button class="cart-btn" onclick="firstAdd('Khatta Meetha Mix',118,'offer3.jpg','Khatta Meetha Mix tea time favorite pack','4K+ bought in past month')">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -615,53 +607,64 @@
       localStorage.setItem("rn_cart", JSON.stringify(cart));
     }
 
+    function updateCartCount() {
+      let cart = getCart();
+      let totalQty = 0;
+      cart.forEach(item => totalQty += item.qty);
+      document.getElementById("cartLink").innerText = "Cart 🛒 " + totalQty;
+    }
+
     function showProfessionalMessage(name) {
       alert("✅ " + name + " has been successfully added to your cart.\n\nYou can now review, update quantity, or place your order anytime from the Cart page.");
     }
 
-    function addToCart(name, price) {
+    function addOrIncreaseCartItem(name, price, image, title, bought) {
       let cart = getCart();
       let item = cart.find(i => i.name === name);
 
       if (item) {
         item.qty += 1;
       } else {
-        cart.push({ name: name, price: price, qty: 1 });
+        cart.push({
+          name: name,
+          price: price,
+          qty: 1,
+          image: image,
+          title: title,
+          bought: bought
+        });
       }
 
       saveCart(cart);
+      updateCartCount();
+      return cart.find(i => i.name === name).qty;
     }
 
-    function firstAdd(name, price) {
-      addToCart(name, price);
+    function firstAdd(name, price, image, title, bought) {
+      const qty = addOrIncreaseCartItem(name, price, image, title, bought);
       showProfessionalMessage(name);
-      renderQtyBox(name, price, 1);
+      renderQtyBox(name, price, image, title, bought, qty);
     }
 
-    function renderQtyBox(name, price, qty) {
+    function renderQtyBox(name, price, image, title, bought, qty) {
       const box = document.getElementById("qty-" + name);
-      if (!box) return;
-
       box.innerHTML = `
         <div class="qty-box">
-          <button class="qty-btn" onclick="changeQty('${name}', ${price}, -1)">-</button>
-          <input type="number" class="qty-input" min="1" value="${qty}" onchange="setQty('${name}', ${price}, this.value)">
-          <button class="qty-btn" onclick="changeQty('${name}', ${price}, 1)">+</button>
+          <button class="qty-btn" onclick="changeQty('${name}', ${price}, '${image}', \`${title}\`, \`${bought}\`, -1)">-</button>
+          <input type="number" class="qty-input" min="1" value="${qty}" onchange="setQty('${name}', ${price}, '${image}', \`${title}\`, \`${bought}\`, this.value)">
+          <button class="qty-btn" onclick="changeQty('${name}', ${price}, '${image}', \`${title}\`, \`${bought}\`, 1)">+</button>
         </div>
       `;
     }
 
-    function renderAddButton(name, price) {
+    function renderAddButton(name, price, image, title, bought) {
       const box = document.getElementById("qty-" + name);
-      if (!box) return;
-
-      box.innerHTML = `<button class="cart-btn" onclick="firstAdd('${name}',${price})">Add to Cart</button>`;
+      box.innerHTML = `<button class="cart-btn" onclick="firstAdd('${name}',${price},'${image}',\`${title}\`,\`${bought}\`)">Add to Cart</button>`;
     }
 
-    function changeQty(name, price, change) {
+    function changeQty(name, price, image, title, bought, change) {
       let cart = getCart();
       let item = cart.find(i => i.name === name);
-
       if (!item) return;
 
       item.qty += change;
@@ -669,60 +672,59 @@
       if (item.qty <= 0) {
         cart = cart.filter(i => i.name !== name);
         saveCart(cart);
-        renderAddButton(name, price);
+        updateCartCount();
+        renderAddButton(name, price, image, title, bought);
         return;
       }
 
       saveCart(cart);
-      renderQtyBox(name, price, item.qty);
+      updateCartCount();
+      renderQtyBox(name, price, image, title, bought, item.qty);
     }
-
-    function setQty(name, price, value) {
+    function setQty(name, price, image, title, bought, value) {
       let qty = parseInt(value);
       let cart = getCart();
       let item = cart.find(i => i.name === name);
-
       if (!item) return;
 
       if (!qty || qty <= 0) {
         cart = cart.filter(i => i.name !== name);
         saveCart(cart);
-        renderAddButton(name, price);
+        updateCartCount();
+        renderAddButton(name, price, image, title, bought);
         return;
       }
 
       item.qty = qty;
       saveCart(cart);
-      renderQtyBox(name, price, item.qty);
+      updateCartCount();
+      renderQtyBox(name, price, image, title, bought, item.qty);
     }
 
     function restoreQtyUI() {
       let cart = getCart();
       cart.forEach(item => {
-        renderQtyBox(item.name, item.price, item.qty);
+        renderQtyBox(
+          item.name,
+          item.price,
+          item.image || 'offer1.jpg',
+          item.title || item.name,
+          item.bought || 'Popular product',
+          item.qty
+        );
       });
     }
 
-    function openPopup(title, desc, priceText, img, priceNumber) {
-      document.getElementById("popupTitle").innerText = title;
+    function openPopup(titleText, desc, priceText, img, priceNumber, name, saveTitle, bought) {
+      document.getElementById("popupTitle").innerText = titleText;
       document.getElementById("popupDesc").innerText = desc;
       document.getElementById("popupPrice").innerText = priceText;
       document.getElementById("popupImg").src = img;
 
       document.getElementById("popupCartBtn").onclick = function() {
-        let cart = getCart();
-        let existing = cart.find(i => i.name === title);
-
-        if (existing) {
-          existing.qty += 1;
-          saveCart(cart);
-          renderQtyBox(title, priceNumber, existing.qty);
-        } else {
-          addToCart(title, priceNumber);
-          renderQtyBox(title, priceNumber, 1);
-        }
-
-        showProfessionalMessage(title);
+        const qty = addOrIncreaseCartItem(name, priceNumber, img, saveTitle, bought);
+        renderQtyBox(name, priceNumber, img, saveTitle, bought, qty);
+        showProfessionalMessage(name);
         closePopup();
       };
 
@@ -734,14 +736,20 @@
     }
 
     document.getElementById("productPopup").addEventListener("click", function(e) {
-      if (e.target.id === "productPopup") {
-        closePopup();
-      }
+      if (e.target.id === "productPopup") closePopup();
     });
 
     document.getElementById("searchInput").addEventListener("keyup", function() {
       let value = this.value.toLowerCase();
-      let items = document.querySelectorAll(".product-item");
+      document.querySelectorAll(".product-item").forEach(function(item) {
+        let name = item.getAttribute("data-name").toLowerCase();
+        item.style.display = name.includes(value) ? "block" : "none";
+      });
+    });
 
-      items.forEach(function(item) {
-  
+    restoreQtyUI();
+    updateCartCount();
+  </script>
+
+</body>
+</html>
