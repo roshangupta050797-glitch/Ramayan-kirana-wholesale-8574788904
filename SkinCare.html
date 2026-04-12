@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmetics Store</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #f5f5f5;
+  margin: 0;
+  padding-bottom: 80px;
+}
+
+.topbar {
+  background: #e91e63;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 10px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.product-image-wrap {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  position: relative;
+}
+
+.product-image-wrap img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.deal-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.plus-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background: #e91e63;
+  color: white;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+.product-info {
+  padding: 12px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.mrp {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.discount {
+  color: green;
+  font-size: 12px;
+}
+
+.add-btn {
+  background: #e91e63;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+}
+
+.cart-controls {
+  display: none;
+  align-items: center;
+  gap: 5px;
+}
+
+.qty-btn {
+  background: #e91e63;
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.qty-input {
+  width: 40px;
+  text-align: center;
+}
+
+.bottom-cart-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.cart-btn {
+  background: #e91e63;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">Cosmetics Store</div>
+
+<div class="container">
+
+<!-- Product 1 -->
+<div class="product-card" data-name="Rose Water" data-price="85">
+  <div class="product-image-wrap">
+    <span class="deal-tag">#BestDeal</span>
+    <img src="cosmetic1.jpg">
+    <button class="plus-btn">+</button>
+  </div>
+
+  <div class="product-info">
+    <h3>Rose Water</h3>
+    <p>Skin fresh aur glowing banaye</p>
+
+    <div class="price">₹85 <span class="mrp">₹120</span> <span class="discount">29% OFF</span></div>
+
+    <button class="add-btn" onclick="addToCartCard(this,'Rose Water',85)">Add</button>
+
+    <div class="cart-controls">
+      <button class="qty-btn" onclick="changeQty(this,-1,'Rose Water',85)">-</button>
+      <input class="qty-input" value="1">
+      <button class="qty-btn" onclick="changeQty(this,1,'Rose Water',85)">+</button>
+    </div>
+  </div>
+</div>
+
+<!-- Product 2 -->
+<div class="product-card" data-name="Face Cream" data-price="140">
+  <div class="product-image-wrap">
+    <span class="deal-tag">#Hot</span>
+    <img src="cosmetic2.jpg">
+    <button class="plus-btn">+</button>
+  </div>
+
+  <div class="product-info">
+    <h3>Face Cream</h3>
+    <p>Smooth aur glowing skin ke liye</p>
+
+    <div class="price">₹140 <span class="mrp">₹180</span></div>
+
+    <button class="add-btn" onclick="addToCartCard(this,'Face Cream',140)">Add</button>
+
+    <div class="cart-controls">
+      <button class="qty-btn" onclick="changeQty(this,-1,'Face Cream',140)">-</button>
+      <input class="qty-input" value="1">
+      <button class="qty-btn" onclick="changeQty(this,1,'Face Cream',140)">+</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="bottom-cart-bar">
+  <div>
+    Items: <span id="cartCount">0</span><br>
+    Total: ₹<span id="cartTotal">0</span>
+  </div>
+  <a href="cart.html" class="cart-btn">View Cart</a>
+</div>
+
+<script>
+const CART_KEY = "ramayanCart";
+let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+
+function saveCart() {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  updateCartBar();
+}
+
+function updateCartBar() {
+  let qty = 0, total = 0;
+  cart.forEach(i => {
+    qty += i.quantity;
+    total += i.price * i.quantity;
+  });
+  document.getElementById("cartCount").innerText = qty;
+  document.getElementById("cartTotal").innerText = total;
+}
+
+function addToCart(name, price) {
+  let item = cart.find(i => i.name === name);
+  if (item) item.quantity++;
+  else cart.push({name, price, quantity:1});
+  saveCart();
+}
+
+function addToCartCard(btn, name, price) {
+  addToCart(name, price);
+  btn.style.display = "none";
+  let controls = btn.nextElementSibling;
+  controls.style.display = "flex";
+}
+
+function changeQty(btn, change, name, price) {
+  let item = cart.find(i => i.name === name);
+  if (!item) return;
+  item.quantity += change;
+  if (item.quantity <= 0) cart = cart.filter(i => i.name !== name);
+  saveCart();
+}
+
+updateCartBar();
+</script>
+
+</body>
+</html>
