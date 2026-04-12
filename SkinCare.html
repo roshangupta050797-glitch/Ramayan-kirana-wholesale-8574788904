@@ -1,257 +1,731 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cosmetics Store</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmetics - Ramayan Kirana Wholesale</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<style>
-body {
-  font-family: Arial;
-  background: #f5f5f5;
-  margin: 0;
-  padding-bottom: 80px;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      padding-bottom: 90px;
+    }
 
-.topbar {
-  background: #e91e63;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  font-size: 20px;
-  font-weight: bold;
-}
+    .topbar {
+      background: linear-gradient(135deg, #d81b60, #ec407a);
+      color: white;
+      padding: 14px 12px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
 
-.container {
-  max-width: 500px;
-  margin: auto;
-  padding: 10px;
-}
+    .subline {
+      font-size: 12px;
+      font-weight: normal;
+      margin-top: 3px;
+      opacity: 0.95;
+    }
 
-.product-card {
-  background: white;
-  border-radius: 15px;
-  margin-bottom: 15px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
+    .container {
+      width: 100%;
+      max-width: 520px;
+      margin: auto;
+      padding: 12px;
+    }
 
-.product-image-wrap {
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  position: relative;
-}
+    .page-banner {
+      background: linear-gradient(135deg, #fff0f6, #fde2ec);
+      border: 1px solid #f8bbd0;
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
 
-.product-image-wrap img {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-}
+    .page-banner h2 {
+      font-size: 18px;
+      color: #c2185b;
+      margin-bottom: 5px;
+    }
 
-.deal-tag {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: red;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-}
+    .page-banner p {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.5;
+    }
 
-.plus-btn {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  background: #e91e63;
-  color: white;
-  border: none;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  font-size: 20px;
-}
+    .product-grid {
+      display: grid;
+      gap: 14px;
+    }
 
-.product-info {
-  padding: 12px;
-}
+    .product-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 5px 16px rgba(0,0,0,0.08);
+      border: 1px solid #eee;
+    }
 
-.price {
-  font-size: 20px;
-  font-weight: bold;
-}
+    .product-image-wrap {
+      position: relative;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
 
-.mrp {
-  text-decoration: line-through;
-  color: gray;
-}
+    .product-image-wrap img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      background: #fff;
+    }
 
-.discount {
-  color: green;
-  font-size: 12px;
-}
+    .deal-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #ff1744;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 5px 9px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      z-index: 2;
+    }
 
-.add-btn {
-  background: #e91e63;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 20px;
-}
+    .plus-btn {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: #d81b60;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(216,27,96,0.35);
+      z-index: 2;
+    }
 
-.cart-controls {
-  display: none;
-  align-items: center;
-  gap: 5px;
-}
+    .product-info {
+      padding: 14px;
+    }
 
-.qty-btn {
-  background: #e91e63;
-  color: white;
-  border: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
+    .product-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 4px;
+    }
 
-.qty-input {
-  width: 40px;
-  text-align: center;
-}
+    .product-pack {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 7px;
+    }
 
-.bottom-cart-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-}
+    .product-desc {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
 
-.cart-btn {
-  background: #e91e63;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 20px;
-  text-decoration: none;
-}
+    .rating {
+      font-size: 13px;
+      color: #ff9800;
+      margin-bottom: 10px;
+    }
 
-</style>
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .price-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .price {
+      font-size: 21px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    .mrp {
+      font-size: 14px;
+      color: #888;
+      text-decoration: line-through;
+    }
+
+    .discount {
+      background: #e8f5e9;
+      color: #1b5e20;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 20px;
+    }
+
+    .add-btn {
+      border: none;
+      background: #d81b60;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 10px 16px;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    .cart-controls {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      background: #fff1f6;
+      padding: 6px 8px;
+      border-radius: 30px;
+      border: 1px solid #f8bbd0;
+    }
+
+    .qty-btn {
+      width: 30px;
+      height: 30px;
+      border: none;
+      border-radius: 50%;
+      background: #d81b60;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .qty-input {
+      width: 42px;
+      height: 30px;
+      text-align: center;
+      border: 1px solid #f3c1d7;
+      border-radius: 8px;
+      font-weight: bold;
+      outline: none;
+    }
+
+    .bottom-cart-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #ffffff;
+      border-top: 1px solid #ddd;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      z-index: 200;
+    }
+
+    .cart-summary {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .cart-summary strong {
+      color: #d81b60;
+      font-size: 16px;
+    }
+
+    .cart-btn {
+      background: #d81b60;
+      color: white;
+      text-decoration: none;
+      padding: 11px 16px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.62);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 14px;
+    }
+
+    .popup-box {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+      animation: popupShow 0.25s ease;
+    }
+
+    @keyframes popupShow {
+      from {
+        transform: translateY(15px) scale(0.98);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .popup-box img {
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      display: block;
+      background: #fff;
+    }
+
+    .popup-content {
+      padding: 16px;
+    }
+
+    .popup-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 6px;
+    }
+
+    .popup-subtitle {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .popup-desc {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .popup-bought {
+      font-size: 13px;
+      color: #2e7d32;
+      background: #f1fff1;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .popup-price {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .popup-price .main-price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    .popup-price .old-price {
+      color: #888;
+      text-decoration: line-through;
+      font-size: 14px;
+    }
+
+    .popup-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .popup-actions button {
+      flex: 1;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-btn {
+      background: #f1f1f1;
+      color: #333;
+    }
+
+    .popup-add-btn {
+      background: #d81b60;
+      color: white;
+    }
+
+    @media (max-width: 480px) {
+      .product-image-wrap {
+        height: 200px;
+      }
+
+      .popup-box img {
+        height: 220px;
+      }
+
+      .price {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="topbar">Cosmetics Store</div>
-
-<div class="container">
-
-<!-- Product 1 -->
-<div class="product-card" data-name="Rose Water" data-price="85">
-  <div class="product-image-wrap">
-    <span class="deal-tag">#BestDeal</span>
-    <img src="cosmetic1.jpg">
-    <button class="plus-btn">+</button>
+  <div class="topbar">
+    Cosmetics Store
+    <div class="subline">Ramayan Kirana Wholesale</div>
   </div>
 
-  <div class="product-info">
-    <h3>Rose Water</h3>
-    <p>Skin fresh aur glowing banaye</p>
+  <div class="container">
+    <div class="page-banner">
+      <h2>Beauty & Personal Care Deals</h2>
+      <p>Popular cosmetics items wholesale rate par. Product pe tap karke full detail dekhein aur cart me add karein.</p>
+    </div>
 
-    <div class="price">₹85 <span class="mrp">₹120</span> <span class="discount">29% OFF</span></div>
+    <div class="product-grid">
 
-    <button class="add-btn" onclick="addToCartCard(this,'Rose Water',85)">Add</button>
+      <div class="product-card" data-name="Gulabari Rose Water" data-price="85">
+        <div class="product-image-wrap">
+          <span class="deal-tag">#BestDeal</span>
+          <img src="cosmetic1.jpg" alt="Gulabari Rose Water">
+          <button class="plus-btn" onclick="openPopup('Gulabari Rose Water','250ml pack, skin ko fresh aur glowing feel dene wala popular rose water. Daily use ke liye accha product.','₹85','₹120','cosmetic1.jpg','Gulabari Rose Water','250ml skincare bottle','3K+ bought in past month')">+</button>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Gulabari Rose Water</div>
+          <div class="product-pack">250ml skincare bottle</div>
+          <div class="product-desc">Skin ko refresh kare, face ko clean feel de aur regular use me kaafi pasand kiya jata hai.</div>
+          <div class="rating">★★★★☆ 4.3</div>
 
-    <div class="cart-controls">
-      <button class="qty-btn" onclick="changeQty(this,-1,'Rose Water',85)">-</button>
-      <input class="qty-input" value="1">
-      <button class="qty-btn" onclick="changeQty(this,1,'Rose Water',85)">+</button>
+          <div class="price-row">
+            <div class="price-left">
+              <div class="price">₹85</div>
+              <div class="mrp">₹120</div>
+              <div class="discount">29% OFF</div>
+            </div>
+
+            <button class="add-btn" onclick="addToCartCard(this, 'Gulabari Rose Water', 85)">Add to Cart</button>
+
+            <div class="cart-controls">
+              <button class="qty-btn" onclick="changeQty(this, -1, 'Gulabari Rose Water', 85)">−</button>
+              <input class="qty-input" type="number" min="1" value="1" oninput="manualQty(this, 'Gulabari Rose Water', 85)">
+              <button class="qty-btn" onclick="changeQty(this, 1, 'Gulabari Rose Water', 85)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Lakme Face Cream" data-price="140">
+        <div class="product-image-wrap">
+          <span class="deal-tag">#Hot</span>
+          <img src="cosmetic2.jpg" alt="Lakme Face Cream">
+          <button class="plus-btn" onclick="openPopup('Lakme Face Cream','50g pack, smooth aur bright skin feel ke liye daily use cream. Beauty products me kaafi popular item.','₹140','₹180','cosmetic2.jpg','Lakme Face Cream','50g face care pack','2K+ bought in past month')">+</button>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Lakme Face Cream</div>
+          <div class="product-pack">50g face care pack</div>
+          <div class="product-desc">Skin ko soft feel dene wala regular cosmetic product, retail aur daily moving item ke roop me useful.</div>
+          <div class="rating">★★★★☆ 4.4</div>
+
+          <div class="price-row">
+            <div class="price-left">
+              <div class="price">₹140</div>
+              <div class="mrp">₹180</div>
+              <div class="discount">22% OFF</div>
+            </div>
+
+            <button class="add-btn" onclick="addToCartCard(this, 'Lakme Face Cream', 140)">Add to Cart</button>
+
+            <div class="cart-controls">
+              <button class="qty-btn" onclick="changeQty(this, -1, 'Lakme Face Cream', 140)">−</button>
+              <input class="qty-input" type="number" min="1" value="1" oninput="manualQty(this, 'Lakme Face Cream', 140)">
+              <button class="qty-btn" onclick="changeQty(this, 1, 'Lakme Face Cream', 140)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Ponds Powder" data-price="95">
+        <div class="product-image-wrap">
+          <span class="deal-tag">#Offer</span>
+          <img src="cosmetic3.jpg" alt="Ponds Powder">
+          <button class="plus-btn" onclick="openPopup('Ponds Powder','100g pack, face ko smooth aur fresh look dene wala trusted product. Daily use aur regular sale ke liye accha item.','₹95','₹130','cosmetic3.jpg','Ponds Powder','100g beauty powder pack','5K+ bought in past month')">+</button>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Ponds Powder</div>
+          <div class="product-pack">100g beauty powder pack</div>
+          <div class="product-desc">Face ko fresh aur clean feel dene ke liye customer-friendly aur regular demand wala product.</div>
+          <div class="rating">★★★★☆ 4.2</div>
+
+          <div class="price-row">
+            <div class="price-left">
+              <div class="price">₹95</div>
+              <div class="mrp">₹130</div>
+              <div class="discount">27% OFF</div>
+            </div>
+
+            <button class="add-btn" onclick="addToCartCard(this, 'Ponds Powder', 95)">Add to Cart</button>
+
+            <div class="cart-controls">
+              <button class="qty-btn" onclick="changeQty(this, -1, 'Ponds Powder', 95)">−</button>
+              <input class="qty-input" type="number" min="1" value="1" oninput="manualQty(this, 'Ponds Powder', 95)">
+              <button class="qty-btn" onclick="changeQty(this, 1, 'Ponds Powder', 95)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Himalaya Neem Face Wash" data-price="110">
+        <div class="product-image-wrap">
+          <span class="deal-tag">#FreshPick</span>
+          <img src="cosmetic4.jpg" alt="Himalaya Neem Face Wash">
+          <button class="plus-btn" onclick="openPopup('Himalaya Neem Face Wash','100ml face wash, skin ko clean aur oil control feel dene ke liye kaafi pasand kiya jane wala product.','₹110','₹145','cosmetic4.jpg','Himalaya Neem Face Wash','100ml face wash tube','4K+ bought in past month')">+</button>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Himalaya Neem Face Wash</div>
+          <div class="product-pack">100ml face wash tube</div>
+          <div class="product-desc">Face cleaning ke liye accha product jo fresh look aur daily use convenience deta hai.</div>
+          <div class="rating">★★★★☆ 4.3</div>
+
+          <div class="price-row">
+            <div class="price-left">
+              <div class="price">₹110</div>
+              <div class="mrp">₹145</div>
+              <div class="discount">24% OFF</div>
+            </div>
+
+            <button class="add-btn" onclick="addToCartCard(this, 'Himalaya Neem Face Wash', 110)">Add to Cart</button>
+
+            <div class="cart-controls">
+              <button class="qty-btn" onclick="changeQty(this, -1, 'Himalaya Neem Face Wash', 110)">−</button>
+              <input class="qty-input" type="number" min="1" value="1" oninput="manualQty(this, 'Himalaya Neem Face Wash', 110)">
+              <button class="qty-btn" onclick="changeQty(this, 1, 'Himalaya Neem Face Wash', 110)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
 
-<!-- Product 2 -->
-<div class="product-card" data-name="Face Cream" data-price="140">
-  <div class="product-image-wrap">
-    <span class="deal-tag">#Hot</span>
-    <img src="cosmetic2.jpg">
-    <button class="plus-btn">+</button>
+  <div class="bottom-cart-bar">
+    <div class="cart-summary">
+      Items: <strong id="cartCount">0</strong><br>
+      Total: <strong id="cartTotal">₹0</strong>
+    </div>
+    <a class="cart-btn" href="cart.html">View Cart</a>
   </div>
 
-  <div class="product-info">
-    <h3>Face Cream</h3>
-    <p>Smooth aur glowing skin ke liye</p>
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+      <img id="popupImage" src="" alt="Product Image">
+      <div class="popup-content">
+        <div class="popup-title" id="popupTitle"></div>
+        <div class="popup-subtitle" id="popupSubtitle"></div>
+        <div class="popup-desc" id="popupDesc"></div>
+        <div class="popup-bought" id="popupBought"></div>
 
-    <div class="price">₹140 <span class="mrp">₹180</span></div>
+        <div class="popup-price">
+          <div class="main-price" id="popupPrice"></div>
+          <div class="old-price" id="popupOldPrice"></div>
+        </div>
 
-    <button class="add-btn" onclick="addToCartCard(this,'Face Cream',140)">Add</button>
-
-    <div class="cart-controls">
-      <button class="qty-btn" onclick="changeQty(this,-1,'Face Cream',140)">-</button>
-      <input class="qty-input" value="1">
-      <button class="qty-btn" onclick="changeQty(this,1,'Face Cream',140)">+</button>
+        <div class="popup-actions">
+          <button class="close-btn" onclick="closePopup()">Close</button>
+          <button class="popup-add-btn" id="popupAddButton">Add to Cart</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-</div>
+  <script>
+    const CART_KEY = "ramayanCart";
+    let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
-<div class="bottom-cart-bar">
-  <div>
-    Items: <span id="cartCount">0</span><br>
-    Total: ₹<span id="cartTotal">0</span>
-  </div>
-  <a href="cart.html" class="cart-btn">View Cart</a>
-</div>
+    function saveCart() {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      updateCartBar();
+    }
 
-<script>
-const CART_KEY = "ramayanCart";
-let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    function updateCartBar() {
+      let totalQty = 0;
+      let totalPrice = 0;
 
-function saveCart() {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  updateCartBar();
-}
+      cart.forEach(item => {
+        totalQty += item.quantity;
+        totalPrice += item.price * item.quantity;
+      });
 
-function updateCartBar() {
-  let qty = 0, total = 0;
-  cart.forEach(i => {
-    qty += i.quantity;
-    total += i.price * i.quantity;
-  });
-  document.getElementById("cartCount").innerText = qty;
-  document.getElementById("cartTotal").innerText = total;
-}
+      document.getElementById("cartCount").innerText = totalQty;
+      document.getElementById("cartTotal").innerText = "₹" + totalPrice;
+    }
 
-function addToCart(name, price) {
-  let item = cart.find(i => i.name === name);
-  if (item) item.quantity++;
-  else cart.push({name, price, quantity:1});
-  saveCart();
-}
+    function getItemIndex(name) {
+      return cart.findIndex(item => item.name === name);
+    }
 
-function addToCartCard(btn, name, price) {
-  addToCart(name, price);
-  btn.style.display = "none";
-  let controls = btn.nextElementSibling;
-  controls.style.display = "flex";
-}
+    function addToCart(name, price, qty = 1) {
+      const index = getItemIndex(name);
 
-function changeQty(btn, change, name, price) {
-  let item = cart.find(i => i.name === name);
-  if (!item) return;
-  item.quantity += change;
-  if (item.quantity <= 0) cart = cart.filter(i => i.name !== name);
-  saveCart();
-}
+      if (index > -1) {
+        cart[index].quantity += qty;
+      } else {
+        cart.push({ name, price, quantity: qty });
+      }
 
-updateCartBar();
-</script>
+      saveCart();
+      syncAllCards();
+    }
 
+    function setCartQty(name, price, qty) {
+      const index = getItemIndex(name);
+
+      if (qty <= 0) {
+        if (index > -1) cart.splice(index, 1);
+      } else {
+        if (index > -1) {
+          cart[index].quantity = qty;
+        } else {
+          cart.push({ name, price, quantity: qty });
+        }
+      }
+
+      saveCart();
+      syncAllCards();
+    }
+
+    function addToCartCard(btn, name, price) {
+      addToCart(name, price, 1);
+      const row = btn.parentElement;
+      btn.style.display = "none";
+      const controls = row.querySelector(".cart-controls");
+      controls.style.display = "flex";
+      controls.querySelector(".qty-input").value = getCartQty(name);
+    }
+
+    function getCartQty(name) {
+      const item = cart.find(i => i.name === name);
+      return item ? item.quantity : 0;
+    }
+
+    function changeQty(button, change, name, price) {
+      const controls = button.parentElement;
+      const input = controls.querySelector(".qty-input");
+      let qty = parseInt(input.value) || 1;
+      qty += change;
+
+      if (qty <= 0) {
+        qty = 0;
+      }
+
+      if (qty === 0) {
+        const row = controls.parentElement;
+        controls.style.display = "none";
+        row.querySelector(".add-btn").style.display = "inline-block";
+      }
+
+      input.value = qty > 0 ? qty : 1;
+      setCartQty(name, price, qty);
+    }
+
+    function manualQty(input, name, price) {
+      let qty = parseInt(input.value);
+
+      if (isNaN(qty) || qty < 1) {
+        qty = 1;
+      }
+
+      input.value = qty;
+      setCartQty(name, price, qty);
+    }
+
+    function syncAllCards() {
+      const cards = document.querySelectorAll(".product-card");
+
+      cards.forEach(card => {
+        const name = card.getAttribute("data-name");
+        const qty = getCartQty(name);
+        const addBtn = card.querySelector(".add-btn");
+        const controls = card.querySelector(".cart-controls");
+        const input = card.querySelector(".qty-input");
+
+        if (qty > 0) {
+          addBtn.style.display = "none";
+          controls.style.display = "flex";
+          input.value = qty;
+        } else {
+          addBtn.style.display = "inline-block";
+          controls.style.display = "none";
+          input.value = 1;
+        }
+      });
+    }
+
+    function openPopup(title, desc, price, oldPrice, image, popupTitle, subtitle, boughtText) {
+      document.getElementById("popupOverlay").style.display = "flex";
+      document.getElementById("popupImage").src = image;
+      document.getElementById("popupTitle").innerText = popupTitle;
+      document.getElementById("popupSubtitle").innerText = subtitle;
+      document.getElementById("popupDesc").innerText = desc;
+      document.getElementById("popupBought").innerText = boughtText;
+      document.getElementById("popupPrice").innerText = price;
+      document.getElementById("popupOldPrice").innerText = oldPrice;
+
+      const numericPrice = Number(price.replace("₹", "").trim());
+
+      document.getElementById("popupAddButton").onclick = function () {
+        addToCart(title, numericPrice, 1);
+        closePopup();
+      };
+    }
+
+    function closePopup() {
+      document.getElementById("popupOverlay").style.display = "none";
+    }
+
+    document.getElementById("popupOverlay").addEventListener("click", function(e) {
+      if (e.target === this) {
+        closePopup();
+      }
+   });
+
+    updateCartBar();
+    syncAllCards();
+  </script>
 </body>
 </html>
