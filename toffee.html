@@ -1,263 +1,731 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toffee Store - Ramayan Kirana</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toffee - Ramayan Kirana Wholesale</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<style>
-body {
-  font-family: Arial;
-  margin: 0;
-  background: #f5f5f5;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      padding-bottom: 90px;
+    }
 
-.topbar {
-  background: linear-gradient(135deg,#ff4081,#f50057);
-  color: white;
-  text-align: center;
-  padding: 14px;
-  font-size: 20px;
-  font-weight: bold;
-}
+    .topbar {
+      background: linear-gradient(135deg, #ec407a, #f06292);
+      color: white;
+      padding: 14px 12px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
 
-.container {
-  max-width: 520px;
-  margin: auto;
-  padding: 12px;
-}
+    .subline {
+      font-size: 12px;
+      font-weight: normal;
+      margin-top: 3px;
+      opacity: 0.95;
+    }
 
-.product-card {
-  background: white;
-  border-radius: 15px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+    .container {
+      width: 100%;
+      max-width: 520px;
+      margin: auto;
+      padding: 12px;
+    }
 
-.product-image-wrap {
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .page-banner {
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      border: 1px solid #f48fb1;
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
 
-.product-image-wrap img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
+    .page-banner h2 {
+      font-size: 18px;
+      color: #ad1457;
+      margin-bottom: 5px;
+    }
 
-.product-info {
-  padding: 12px;
-}
+    .page-banner p {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.5;
+    }
 
-.product-title {
-  font-size: 18px;
-  font-weight: bold;
-}
+    .product-grid {
+      display: grid;
+      gap: 14px;
+    }
 
-.price {
-  font-size: 20px;
-  font-weight: bold;
-}
+    .product-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 5px 16px rgba(0,0,0,0.08);
+      border: 1px solid #eee;
+    }
 
-.mrp {
-  text-decoration: line-through;
-  color: gray;
-}
+    .product-image-wrap {
+      position: relative;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
 
-.add-btn {
-  background: #ff4081;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 20px;
-  cursor: pointer;
-}
+    .product-image-wrap img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      background: #fff;
+    }
 
-.cart-controls {
-  display: none;
-  gap: 5px;
-}
+    .deal-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #ff1744;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 5px 9px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      z-index: 2;
+    }
 
-.qty-btn {
-  background: #ff4081;
-  color: white;
-  border: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
+    .plus-btn {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: #ec407a;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(236,64,122,0.35);
+      z-index: 2;
+    }
 
-.qty-input {
-  width: 40px;
-  text-align: center;
-}
+    .product-info {
+      padding: 14px;
+    }
 
-.bottom-bar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: white;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #ddd;
-}
+    .product-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 4px;
+    }
 
-.cart-btn {
-  background: #ff4081;
-  color: white;
-  padding: 10px;
-  border-radius: 20px;
-  text-decoration: none;
-}
-</style>
+    .product-pack {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 7px;
+    }
+
+    .product-desc {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .rating {
+      font-size: 13px;
+      color: #ff9800;
+      margin-bottom: 10px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .price-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .price {
+      font-size: 21px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    .mrp {
+      font-size: 14px;
+      color: #888;
+      text-decoration: line-through;
+    }
+
+    .discount {
+      background: #e8f5e9;
+      color: #1b5e20;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 20px;
+    }
+
+    .add-btn {
+      border: none;
+      background: #ec407a;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 10px 16px;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    .cart-controls {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      background: #fce4ec;
+      padding: 6px 8px;
+      border-radius: 30px;
+      border: 1px solid #f8bbd0;
+    }
+
+    .qty-btn {
+      width: 30px;
+      height: 30px;
+      border: none;
+      border-radius: 50%;
+      background: #ec407a;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .qty-input {
+      width: 42px;
+      height: 30px;
+      text-align: center;
+      border: 1px solid #f48fb1;
+      border-radius: 8px;
+      font-weight: bold;
+      outline: none;
+    }
+
+    .bottom-cart-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #ffffff;
+      border-top: 1px solid #ddd;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      z-index: 200;
+    }
+
+    .cart-summary {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .cart-summary strong {
+      color: #ec407a;
+      font-size: 16px;
+    }
+
+    .cart-btn {
+      background: #ec407a;
+      color: white;
+      text-decoration: none;
+      padding: 11px 16px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.62);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 14px;
+    }
+
+    .popup-box {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+      animation: popupShow 0.25s ease;
+    }
+
+    @keyframes popupShow {
+      from {
+        transform: translateY(15px) scale(0.98);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .popup-box img {
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      display: block;
+      background: #fff;
+    }
+
+    .popup-content {
+      padding: 16px;
+    }
+
+    .popup-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 6px;
+    }
+
+    .popup-subtitle {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .popup-desc {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .popup-bought {
+      font-size: 13px;
+      color: #2e7d32;
+      background: #f1fff1;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .popup-price {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .popup-price .main-price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    .popup-price .old-price {
+      color: #888;
+      text-decoration: line-through;
+      font-size: 14px;
+    }
+
+    .popup-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .popup-actions button {
+      flex: 1;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-btn {
+      background: #f1f1f1;
+      color: #333;
+    }
+
+    .popup-add-btn {
+      background: #ec407a;
+      color: white;
+    }
+
+    @media (max-width: 480px) {
+      .product-image-wrap {
+        height: 200px;
+      }
+
+      .popup-box img {
+        height: 220px;
+      }
+
+      .price {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="topbar">Toffee Store</div>
+  <div class="topbar">
+    Toffee Store
+    <div class="subline">Ramayan Kirana Wholesale</div>
+  </div>
 
-<div class="container">
+  <div class="container">
+    <div class="page-banner">
+      <h2>Tasty Toffee Deals</h2>
+      <p>Popular toffee items wholesale rate par. Product pe tap karke full detail dekhein aur cart me add karein.</p>
+    </div>
 
-<!-- Product 1 -->
-<div class="product-card" data-name="Eclairs Toffee" data-price="120">
-<div class="product-image-wrap">
-<img src="toffee1.jpg">
-</div>
+    <div class="product-grid">
 
-<div class="product-info">
-<div class="product-title">Eclairs Toffee</div>
-<div>Chocolate filled toffee pack</div>
+      <div class="product-card" data-name="Eclairs Toffee" data-price="120">
+        <div class="product-image-wrap">
+          <span class="deal-tag">#BestDeal</span>
+          <img src="toffee1.jpg" alt="Eclairs Toffee">
+          <button class="plus-btn" onclick="openPopup('Eclairs Toffee','Chocolate filled toffee pack jo bachcho aur retail sale ke liye kaafi popular item hai.','₹120','₹140','toffee1.jpg','Eclairs Toffee','Chocolate filled toffee pack','6K+ bought in past month')">+</button>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Eclairs Toffee</div>
+          <div class="product-pack">Chocolate filled toffee pack</div>
+          <div class="product-desc">Chocolate taste wali popular toffee jo daily sale aur bachcho ki demand ke liye best hai.</div>
+          <div class="rating">★★★★☆ 4.5</div>
 
-<div>
-<span class="price">₹120</span>
-<span class="mrp">₹140</span>
-</div>
+          <div class="price-row">
+            <div class="price-left">
+              <div class="price">₹120</div>
+              <div class="mrp">₹140</div>
+              <div class="discount">14% OFF</div>
+            </div>
 
-<button class="add-btn" onclick="addToCartCard(this,'Eclairs Toffee',120)">Add to Cart</button>
+            <button class="add-btn" onclick="addToCartCard(this, 'Eclairs Toffee', 120)">Add to Cart</button>
 
-<div class="cart-controls">
-<button class="qty-btn" onclick="changeQty(this,-1,'Eclairs Toffee',120)">-</button>
-<input class="qty-input" value="1">
-<button class="qty-btn" onclick="changeQty(this,1,'Eclairs Toffee',120)">+</button>
-</div>
+            <div class="cart-controls">
+              <button class="qty-btn" onclick="changeQty(this, -1, 'Eclairs Toffee', 120)">−</button>
+              <input class="qty-input" type="number" min="1" value="1" oninput="manualQty(this, 'Eclairs Toffee', 120)">
+              <button class="qty-btn" onclick="changeQty(this, 1, 'Eclairs Toffee', 120)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-</div>
-</div>
+      <div class="product-card" data-name="Pulse Candy" data-price="95">
+        <div class="product-image-wrap">
+          <span class="deal-tag">#Hot</span>
+          <img src="toffee2.jpg" alt="Pulse Candy">
+          <button class="plus-btn" onclick="openPopup('Pulse Candy','Kaccha aam flavour wali candy jo retail me bahut fast moving aur customer favourite item hai.','₹95','₹110','toffee2.jpg','Pulse Candy','Kaccha aam flavour candy pack','8K+ bought in past month')">+</button>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Pulse Candy</div>
+          <div class="product-pack">Kaccha aam flavour candy pack</div>
+          <div class="product-desc">Tangy aur chatpati taste wali candy jo bachcho aur bade dono me popular hai.</div>
+          <div class="rating">★★★★☆ 4.6</div>
 
-<!-- Product 2 -->
-<div class="product-card" data-name="Pulse Candy" data-price="95">
-<div class="product-image-wrap">
-<img src="toffee2.jpg">
-</div>
+          <div class="price-row">
+            <div class="price-left">
+              <div class="price">₹95</div>
+              <div class="mrp">₹110</div>
+              <div class="discount">14% OFF</div>
+            </div>
 
-<div class="product-info">
-<div class="product-title">Pulse Candy</div>
-<div>Kaccha aam flavour</div>
+            <button class="add-btn" onclick="addToCartCard(this, 'Pulse Candy', 95)">Add to Cart</button>
 
-<div>
-<span class="price">₹95</span>
-<span class="mrp">₹110</span>
-</div>
+            <div class="cart-controls">
+              <button class="qty-btn" onclick="changeQty(this, -1, 'Pulse Candy', 95)">−</button>
+              <input class="qty-input" type="number" min="1" value="1" oninput="manualQty(this, 'Pulse Candy', 95)">
+              <button class="qty-btn" onclick="changeQty(this, 1, 'Pulse Candy', 95)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<button class="add-btn" onclick="addToCartCard(this,'Pulse Candy',95)">Add to Cart</button>
+      <div class="product-card" data-name="Melody Toffee" data-price="105">
+        <div class="product-image-wrap">
+          <span class="deal-tag">#Offer</span>
+          <img src="toffee3.jpg" alt="Melody Toffee">
+          <button class="plus-btn" onclick="openPopup('Melody Toffee','Chocolate caramel wali classic toffee jo har age group me pasand ki jati hai.','₹105','₹120','toffee3.jpg','Melody Toffee','Chocolate caramel toffee pack','5K+ bought in past month')">+</button>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Melody Toffee</div>
+          <div class="product-pack">Chocolate caramel toffee pack</div>
+          <div class="product-desc">Soft aur tasty caramel chocolate toffee jo regular demand me chalne wala strong item hai.</div>
+          <div class="rating">★★★★☆ 4.4</div>
 
-<div class="cart-controls">
-<button class="qty-btn" onclick="changeQty(this,-1,'Pulse Candy',95)">-</button>
-<input class="qty-input" value="1">
-<button class="qty-btn" onclick="changeQty(this,1,'Pulse Candy',95)">+</button>
-</div>
+          <div class="price-row">
+            <div class="price-left">
+              <div class="price">₹105</div>
+              <div class="mrp">₹120</div>
+              <div class="discount">13% OFF</div>
+            </div>
 
-</div>
-</div>
+            <button class="add-btn" onclick="addToCartCard(this, 'Melody Toffee', 105)">Add to Cart</button>
 
-<!-- Product 3 -->
-<div class="product-card" data-name="Melody Toffee" data-price="105">
-<div class="product-image-wrap">
-<img src="toffee3.jpg">
-</div>
+            <div class="cart-controls">
+              <button class="qty-btn" onclick="changeQty(this, -1, 'Melody Toffee', 105)">−</button>
+              <input class="qty-input" type="number" min="1" value="1" oninput="manualQty(this, 'Melody Toffee', 105)">
+              <button class="qty-btn" onclick="changeQty(this, 1, 'Melody Toffee', 105)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<div class="product-info">
-<div class="product-title">Melody Toffee</div>
-<div>Chocolate caramel candy</div>
+      <div class="product-card" data-name="Mango Bite" data-price="90">
+        <div class="product-image-wrap">
+          <span class="deal-tag">#FreshPick</span>
+          <img src="toffee4.jpg" alt="Mango Bite">
+          <button class="plus-btn" onclick="openPopup('Mango Bite','Mango flavour wali tasty candy jo school kids aur daily retail sale ke liye kaafi acchi choice hai.','₹90','₹105','toffee4.jpg','Mango Bite','Mango flavour candy pack','4K+ bought in past month')">+</button>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Mango Bite</div>
+          <div class="product-pack">Mango flavour candy pack</div>
+          <div class="product-desc">Mango taste wali sweet candy jo bachcho ke beech regular demand me rehti hai.</div>
+          <div class="rating">★★★★☆ 4.3</div>
 
-<div>
-<span class="price">₹105</span>
-<span class="mrp">₹120</span>
-</div>
+          <div class="price-row">
+            <div class="price-left">
+              <div class="price">₹90</div>
+              <div class="mrp">₹105</div>
+              <div class="discount">14% OFF</div>
+            </div>
 
-<button class="add-btn" onclick="addToCartCard(this,'Melody Toffee',105)">Add to Cart</button>
+            <button class="add-btn" onclick="addToCartCard(this, 'Mango Bite', 90)">Add to Cart</button>
 
-<div class="cart-controls">
-<button class="qty-btn" onclick="changeQty(this,-1,'Melody Toffee',105)">-</button>
-<input class="qty-input" value="1">
-<button class="qty-btn" onclick="changeQty(this,1,'Melody Toffee',105)">+</button>
-</div>
+            <div class="cart-controls">
+              <button class="qty-btn" onclick="changeQty(this, -1, 'Mango Bite', 90)">−</button>
+              <input class="qty-input" type="number" min="1" value="1" oninput="manualQty(this, 'Mango Bite', 90)">
+              <button class="qty-btn" onclick="changeQty(this, 1, 'Mango Bite', 90)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-</div>
-</div>
+    </div>
+  </div>
 
-</div>
+  <div class="bottom-cart-bar">
+    <div class="cart-summary">
+      Items: <strong id="cartCount">0</strong><br>
+      Total: <strong id="cartTotal">₹0</strong>
+    </div>
+    <a class="cart-btn" href="cart.html">View Cart</a>
+  </div>
 
-<div class="bottom-bar">
-<div>
-Items: <span id="cartCount">0</span>
-</div>
-<a href="cart.html" class="cart-btn">View Cart</a>
-</div>
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+      <img id="popupImage" src="" alt="Product Image">
+      <div class="popup-content">
+        <div class="popup-title" id="popupTitle"></div>
+        <div class="popup-subtitle" id="popupSubtitle"></div>
+        <div class="popup-desc" id="popupDesc"></div>
+        <div class="popup-bought" id="popupBought"></div>
 
-<script>
-const CART_KEY = "ramayanCart";
-let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+        <div class="popup-price">
+          <div class="main-price" id="popupPrice"></div>
+          <div class="old-price" id="popupOldPrice"></div>
+        </div>
 
-function saveCart(){
-localStorage.setItem(CART_KEY,JSON.stringify(cart));
-updateCart();
-}
+        <div class="popup-actions">
+          <button class="close-btn" onclick="closePopup()">Close</button>
+          <button class="popup-add-btn" id="popupAddButton">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-function updateCart(){
-let count=0;
-cart.forEach(i=>count+=i.quantity);
-document.getElementById("cartCount").innerText=count;
-}
+  <script>
+    const CART_KEY = "ramayanCart";
+    let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
-function addToCart(name,price){
-let item=cart.find(i=>i.name===name);
-if(item){item.quantity++}
-else{cart.push({name,price,quantity:1})}
-saveCart();
-}
+    function saveCart() {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      updateCartBar();
+    }
 
-function addToCartCard(btn,name,price){
-addToCart(name,price);
-btn.style.display="none";
-let controls=btn.nextElementSibling;
-controls.style.display="flex";
-}
+    function updateCartBar() {
+      let totalQty = 0;
+      let totalPrice = 0;
 
-function changeQty(btn,change,name,price){
-let input=btn.parentElement.querySelector("input");
-let qty=parseInt(input.value)||1;
-qty+=change;
+      cart.forEach(item => {
+        totalQty += item.quantity;
+        totalPrice += item.price * item.quantity;
+      });
 
-if(qty<=0){
-btn.parentElement.style.display="none";
-btn.parentElement.previousElementSibling.style.display="block";
-cart=cart.filter(i=>i.name!==name);
-}else{
-input.value=qty;
-let item=cart.find(i=>i.name===name);
-if(item)item.quantity=qty;
-}
+      document.getElementById("cartCount").innerText = totalQty;
+      document.getElementById("cartTotal").innerText = "₹" + totalPrice;
+    }
 
-saveCart();
-}
+    function getItemIndex(name) {
+      return cart.findIndex(item => item.name === name);
+    }
 
-updateCart();
-</script>
+    function addToCart(name, price, qty = 1) {
+      const index = getItemIndex(name);
 
+      if (index > -1) {
+        cart[index].quantity += qty;
+      } else {
+        cart.push({ name, price, quantity: qty });
+      }
+
+      saveCart();
+      syncAllCards();
+    }
+
+    function setCartQty(name, price, qty) {
+      const index = getItemIndex(name);
+
+      if (qty <= 0) {
+        if (index > -1) cart.splice(index, 1);
+      } else {
+        if (index > -1) {
+          cart[index].quantity = qty;
+        } else {
+          cart.push({ name, price, quantity: qty });
+        }
+      }
+
+      saveCart();
+      syncAllCards();
+    }
+
+    function addToCartCard(btn, name, price) {
+      addToCart(name, price, 1);
+      const row = btn.parentElement;
+      btn.style.display = "none";
+      const controls = row.querySelector(".cart-controls");
+      controls.style.display = "flex";
+      controls.querySelector(".qty-input").value = getCartQty(name);
+    }
+
+    function getCartQty(name) {
+      const item = cart.find(i => i.name === name);
+      return item ? item.quantity : 0;
+    }
+
+    function changeQty(button, change, name, price) {
+      const controls = button.parentElement;
+      const input = controls.querySelector(".qty-input");
+      let qty = parseInt(input.value) || 1;
+      qty += change;
+
+      if (qty <= 0) {
+        qty = 0;
+      }
+
+      if (qty === 0) {
+        const row = controls.parentElement;
+        controls.style.display = "none";
+        row.querySelector(".add-btn").style.display = "inline-block";
+      }
+
+      input.value = qty > 0 ? qty : 1;
+      setCartQty(name, price, qty);
+    }
+
+    function manualQty(input, name, price) {
+      let qty = parseInt(input.value);
+
+      if (isNaN(qty) || qty < 1) {
+        qty = 1;
+      }
+
+      input.value = qty;
+      setCartQty(name, price, qty);
+    }
+
+    function syncAllCards() {
+      const cards = document.querySelectorAll(".product-card");
+
+      cards.forEach(card => {
+        const name = card.getAttribute("data-name");
+        const qty = getCartQty(name);
+        const addBtn = card.querySelector(".add-btn");
+        const controls = card.querySelector(".cart-controls");
+        const input = card.querySelector(".qty-input");
+
+        if (qty > 0) {
+          addBtn.style.display = "none";
+          controls.style.display = "flex";
+          input.value = qty;
+        } else {
+          addBtn.style.display = "inline-block";
+          controls.style.display = "none";
+          input.value = 1;
+        }
+      });
+    }
+
+    function openPopup(title, desc, price, oldPrice, image, popupTitle, subtitle, boughtText) {
+      document.getElementById("popupOverlay").style.display = "flex";
+      document.getElementById("popupImage").src = image;
+      document.getElementById("popupTitle").innerText = popupTitle;
+      document.getElementById("popupSubtitle").innerText = subtitle;
+      document.getElementById("popupDesc").innerText = desc;
+      document.getElementById("popupBought").innerText = boughtText;
+      document.getElementById("popupPrice").innerText = price;
+      document.getElementById("popupOldPrice").innerText = oldPrice;
+
+      const numericPrice = Number(price.replace("₹", "").trim());
+
+      document.getElementById("popupAddButton").onclick = function () {
+        addToCart(title, numericPrice, 1);
+        closePopup();
+      };
+    }
+
+    function closePopup() {
+      document.getElementById("popupOverlay").style.display = "none";
+    }
+
+    document.getElementById("popupOverlay").addEventListener("click", function(e) {
+      if (e.target === this) {
+        closePopup();
+      }
+    });
+
+    updateCartBar();
+    syncAllCards();
+  </script>
 </body>
-</html>
+  </html>
